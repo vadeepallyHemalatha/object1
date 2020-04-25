@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>comment and show program</title>
+
+</head>
+<body>
+    <form>
+         commntId<input type="text"placeholder="enter commenrid"id="comment"><br><br>
+         username<input type="text" placeholder="enteruname"id="uname" ><br><br><br>
+         comment <input type="text" placeholder="emessage"id="message"><br><br><br>
+        <button onclick="addcomment()">addcomment</button>
+    </form>
+    <ul id="comments"></ul>
+    <script>
+        var allcomments=[];
+        function addcomment(){
+            event.preventDefault();
+            var username=document.getElementById('uname').value;
+             var comment= document.getElementById('message').value;
+             var commentid=document.getElementById('comment').value;
+                var comment={
+                    username:username,
+                    comment:comment,
+                    commentid:commentid,
+                    time:getCurrentDateAndTime()
+                }
+                console.log(comment);
+                allcomments.push(comment);
+                showcomments();
+
+         }
+
+         function getCurrentDateAndTime(){
+             var date=new Date();
+            return date.getHours()+" :" +date.getMinutes()+" "+date.getDate()+" /"+date.getMonth()+"  /"+date.getFullYear();
+         }
+         function showcomments(){
+             var comments=document.getElementById('comments');
+             comments.innerHTML="";
+             for(i=0;i<allcomments.length;i++){
+                 var comment=allcomments[i];
+                    comments.innerHTML=comments.innerHTML+"<li>"+comment.username+ " "+comment.comment +" "+"</li>";
+
+
+             }
+
+         }
+    </script>
+</body>
+
+
+</html>
